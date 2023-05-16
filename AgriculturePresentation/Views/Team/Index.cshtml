@@ -1,0 +1,59 @@
+﻿@using EntityLayer.Entities
+@model List<Team>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Takım Arkadaşlarımızın Listesi</h4>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Id</th>
+                            <th>Ad</th>
+                            <th>Görev</th>
+                            <th>Sil</th>
+                            <th>Düzenle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center text-danger">Takım üyesi bulunamadı</td>
+
+                            </tr>
+                        }
+                        else
+                        {
+
+                            @foreach (var x in Model)
+                            {
+                                <tr>
+                                    <td class="py-1">
+                                        <img src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/images/faces/face1.jpg" alt="image" />
+                                    </td>
+                                    <td>@x.TeamID</td>
+                                    <td>@x.PersonName</td>
+                                    <td>@x.Title</td>
+                                    <td><a href="/Team/DeleteTeam/@x.TeamID" class="btn btn-outline-danger">Sil</a></td>
+                                    <td><a href="/Team/EditTeam/@x.TeamID" class="btn btn-outline-success">Düzenle</a></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <a href="/Team/AddTeam/" class="btn btn-outline-primary">Yeni Takım Arkadaşı Ekle</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
